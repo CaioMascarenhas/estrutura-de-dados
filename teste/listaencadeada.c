@@ -15,7 +15,7 @@ node *create_linked_list()
 }
 
 // Função para adicionar um novo nó no início da lista
-node *insert_at_beginning(struct node *head, int item)
+node *insert_at_beginning(node *head, int item)
 {
     node *new_node = malloc(sizeof(node));
     new_node->item = item;
@@ -66,7 +66,7 @@ int is_empty(node *head){
 int main()
 {
 
-    struct node *list = create_linked_list();
+    node *list = create_linked_list();
     list = insert_at_end(list, 3);
     list = insert_at_end(list, 4);
     list = insert_at_end(list, 5);
