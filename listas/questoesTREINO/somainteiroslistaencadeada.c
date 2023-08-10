@@ -22,6 +22,15 @@ void printList(Node* head) {
     }
 
     Node* current = head;
+    while (current != NULL && current->data == 0) {
+        current = current->next;
+    }
+
+    if (current == NULL) {
+        printf("0\n");
+        return;
+    }
+
     while (current != NULL) {
         printf("%d ", current->data);
         current = current->next;
@@ -31,6 +40,7 @@ void printList(Node* head) {
 
 Node* addLists(Node* num1, Node* num2) {
     Node* result = NULL;
+    Node* current = NULL;
     int carry = 0;
 
     while (num1 != NULL || num2 != NULL || carry != 0) {
@@ -87,12 +97,9 @@ int main() {
         }
     }
 
-    if (num1 == NULL && num2 == NULL) {
-        printf("Lista vazia!\n");
-    } else {
-        Node* sum = addLists(num1, num2);
-        printList(sum);
-    }
+    Node* sum = addLists(num1, num2);
+
+    printList(sum);
 
     return 0;
 }

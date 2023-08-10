@@ -53,24 +53,13 @@ void print_linked_list(node *head)
 {
     if (!is_empty(head))
     {
-        printf("%d\n", head->item);
+        printf("(%d)", head->item);
         print_linked_list(head->next);
     }
 }
 
 int is_empty(node *head){
     return (head == NULL);
-}
-
-node *Copy_List(node *list, node *list2) {
-    
-    while (list !=NULL)
-    {
-        list2 = insert_at_end(list2, list->item);
-        list = list->next;
-    }
-    return list2;
-    
 }
 
 void bubble_sort(node *head)
@@ -102,18 +91,47 @@ void bubble_sort(node *head)
     } while (swapped);
 }
 
+node *Copy_List(node *list, node *list2) {
+    
+    while (list !=NULL)
+    {
+        list2 = insert_at_beginning(list2, list->item);
+        list = list->next;
+    }
+    return list2;
+    
+}
+
 
 int main()
 {
 
     node *list = create_linked_list();
-    list = insert_at_end(list, 3);
-    list = insert_at_end(list, 4);
-    list = insert_at_end(list, 5);
-    list = insert_at_end(list, 6);
-    list = insert_at_end(list, 7);
+    node *list2 = create_linked_list();
+    
+    int tamanho;
+    scanf("%d",&tamanho);
+    
+    for (int i = 0; i < tamanho; i++)
+    {   
+        int aux;
+        scanf("%d",&aux);
+        list = insert_at_end(list,aux);
+    }
 
+    bubble_sort(list);
+    list2 = Copy_List(list,list2);
+
+    printf("Tamanho = %d\n",tamanho);
     print_linked_list(list);
+    printf("\n");
+    printf("Tamanho = %d\n",tamanho);
+    print_linked_list(list2);
+    printf("\n");
+    printf("Tamanho = %d\n",tamanho);
+    print_linked_list(list);
+
+    
 
     return 0;
 }
